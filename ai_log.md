@@ -33,7 +33,8 @@ Include a simple NavHost for navigating between dashboard and scan screens. Use 
 - text: small readable text around 12.sp
 - status: prominent, high contrast style for status indicators
 
-- **AI Result:** Assistent edited `Type.kt` with styles i asked for, gave it different name, and added a few more. example:
+- **AI Result:** Assistent edited `Type.kt` with styles i asked for, gave it different name, which is actually ok, because its mapped to bodySmall etc.
+  Assistent added a few more styles. example:
   headlineSmall = TextStyle(
   fontFamily = FontFamily.Default,
   fontWeight = FontWeight.Bold,
@@ -47,7 +48,8 @@ Include a simple NavHost for navigating between dashboard and scan screens. Use 
   - Assistant did not add new fonts.
 
 - **My changes:**
-- I kept the sizes, but changed names so it orient in the styles better.
+  - Removed unnecessary styles.
+  - Edited the sizes and colors.
 
 ## Interaction 3: Creating dashboard components
 
