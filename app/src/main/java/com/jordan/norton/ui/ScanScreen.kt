@@ -45,31 +45,9 @@ fun ScanScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Scanning in progress...",
+                text = "TODO...",
                 style = MaterialTheme.typography.headlineMedium
             )
-            
-            Spacer(modifier = Modifier.height(32.dp))
-            
-            LinearProgressIndicator(
-                progress = { uiState.scanProgress },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(8.dp)
-            )
-            
-            Spacer(modifier = Modifier.height(16.dp))
-            
-            Text(
-                text = "${(uiState.scanProgress * 100).toInt()}%",
-                style = MaterialTheme.typography.bodyLarge
-            )
-            
-            Spacer(modifier = Modifier.height(48.dp))
-            
-            Button(onClick = onScanComplete) {
-                Text("Cancel Scan")
-            }
         }
     }
 }
