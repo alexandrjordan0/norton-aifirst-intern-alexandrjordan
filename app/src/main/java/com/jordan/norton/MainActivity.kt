@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.jordan.norton.ui.DashboardScreen
+import com.jordan.norton.ui.ScanScreen
+import com.jordan.norton.ui.SecurityViewModel
 import com.jordan.norton.ui.theme.NortonSecurityDashboardTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +20,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NortonSecurityDashboardTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                SecurityApp()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun SecurityApp() {
+    val navController = rememberNavController()
+    val viewModel: SecurityViewModel = viewModel()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NortonSecurityDashboardTheme {
-        Greeting("Android")
+    NavHost(navController = navController, startDestination = "dashboard") {
+        composable("dashboard") {
+            DashboardScreen(
+                viewModel = viewModel,
+                onNavigateToScan = { navController.navigate("scan") }
+            )
+        }
+        composable("scan") {
+            ScanScreen(
+                viewModel = viewModel,
+                onScanComplete = { navController.popBackStack() }
+            )
+        }
     }
 }
