@@ -48,3 +48,23 @@ Include a simple NavHost for navigating between dashboard and scan screens. Use 
 
 - **My changes:**
 - I kept the sizes, but changed names so it orient in the styles better.
+
+## Interaction 3: Creating dashboard components
+
+- **Prompt:**
+  Stop editing things i did not ask to edit. Do not add code i have removed. Use same name as i tell you.
+
+  In DashboardScreen.kt create two composable functions:
+  - CategoryItem: Card that will show security categories. It should show their title, status and description
+  - DashboardStatus: Space that will show full device status and NortonButton.
+
+- **AI Result:**
+  Generated two composable functions as I asked. Used correct names.
+
+- **Commentary:**
+  - Assistant wanted to use different names for typography styles and created an interface for it.
+  - As a basic structure it looks good. Now I will style it.
+
+- **My changes:**
+  - I removed the typography interface.
+  - Added dummy data to test card styles.
