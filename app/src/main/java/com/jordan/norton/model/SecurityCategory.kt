@@ -1,11 +1,13 @@
 package com.jordan.norton.model
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.vector.ImageVector
 
 enum class SecurityStatus {
     SAFE, WARNING, DANGER, UNKNOWN
 }
 
+@Immutable
 data class SecurityCategory(
     val id: String,
     val title: String,

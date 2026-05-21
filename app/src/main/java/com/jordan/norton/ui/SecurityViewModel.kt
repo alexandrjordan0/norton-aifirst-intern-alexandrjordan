@@ -30,6 +30,12 @@ data class SecurityUiState(
 
 class SecurityViewModel : ViewModel() {
 
+    companion object {
+        private const val SCAN_STEPS = 20
+        private const val SCAN_STEP_DELAY_MS = 100L
+        private const val SCAN_ACTION_DELAY_MS = 800L
+    }
+
     private val _uiState = MutableStateFlow(SecurityUiState())
     val uiState: StateFlow<SecurityUiState> = _uiState.asStateFlow()
 
@@ -93,14 +99,14 @@ class SecurityViewModel : ViewModel() {
                 val startProgress = index.toFloat() / actions.size
                 val endProgress = (index + 1).toFloat() / actions.size
 
-                val steps = 20
+                val steps = SCAN_STEPS
                 for (step in 1..steps) {
-                    delay(100)
+                    delay(SCAN_STEP_DELAY_MS)
                     val progress =
                         startProgress + (endProgress - startProgress) * (step.toFloat() / steps)
                     _uiState.update { it.copy(scanProgress = progress) }
                 }
-                delay(800)
+                delay(SCAN_ACTION_DELAY_MS)
             }
 
             val newCategories = generateRandomScanResults(_uiState.value.categories)
@@ -110,6 +116,7 @@ class SecurityViewModel : ViewModel() {
                     isScanning = false,
                     scanProgress = 1f,
                     categories = newCategories,
+                    currentAction = "Scan Complete"
                 )
             }
         }

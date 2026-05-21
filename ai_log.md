@@ -151,3 +151,38 @@
   > - label under title which will show current check actions that i will simulate later
   > - small progress indicator under label
   > - Take the color blurred color canvas from the Dashboard status and put it on bottom half of screen. Use NortonBlue color
+
+# Interaction 7: Writing unit tests
+
+- **Prompt: **
+  > Generete me 5 unit tests. That will do this:
+  >
+  > 1.  mock data loading
+  > 2.  test double click prevention
+  > 3.  check score boundaries
+  > 4.  integrity of modified categories after scan
+  > 5.  sequence of text updates while scanning
+  >     Implement missing dependencies for this
+
+## Interaction 8: System navigation handling
+
+- **Prompt:**
+  > How to disable the back navigation pop, for example when using the system back button during an active scan?
+- **AI Result:** The assistant recommended using the Jetpack Compose `BackHandler` and binding its `enabled` property directly to the `uiState.isScanning` boolean.
+- **Commentary:**
+  - The provided solution was elegant and used native code so i used it.
+- **My changes:**
+  - Implemented the `BackHandler` in `ScanScreen` with an empty lambda block. This ensures that user cannot interupt the scanning procces other than exiting application.
+
+## Interaction 9: Formal code review
+
+> Please perform a formal code review of my project. Focus on:
+>
+> - MVVM architecture compliance.
+> - Jetpack Compose best practices as state hoisting, recomposition performance, etc.
+> - Clean Code and modularity.
+> - Please provide specific areas for improvement and identify any potential risks. I will document this review in my final report
+
+## Note on Micro-Interactions
+
+Besides the major architectural interactions logged above, i continuously utilized AI tools for rapid prototyping and quick fixes that i would otherwise have searched for on the internet. This saved me lot of time.
