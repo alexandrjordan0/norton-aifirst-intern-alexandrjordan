@@ -1,5 +1,7 @@
 # Norton Security Dashboard
 
+**[Demo on YouTube](https://youtu.be/TX_fHBru2Mk)**
+
 ## Project Overview
 
 - **Chosen Option:** A
