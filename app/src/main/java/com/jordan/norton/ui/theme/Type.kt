@@ -12,7 +12,7 @@ val Typography = Typography(
     // title: large bold style for titles and sections
     titleLarge = TextStyle(
         fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.ExtraBold,
         fontSize = 28.sp,
         color = Color.Black
     ),
