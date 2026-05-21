@@ -1,9 +1,12 @@
 package com.jordan.norton.ui
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,17 +19,21 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.BlurredEdgeTreatment
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordan.norton.model.SecurityCategory
 import com.jordan.norton.model.SecurityStatus
+import com.jordan.norton.ui.components.NortonAppBar
 import com.jordan.norton.ui.components.NortonButton
+import com.jordan.norton.ui.theme.NortonBlue
 import com.jordan.norton.ui.theme.NortonGreen
 import com.jordan.norton.ui.theme.NortonGrey
 import com.jordan.norton.ui.theme.NortonLightGrey
@@ -43,14 +50,15 @@ fun DashboardScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     val categories = listOf(
-        SecurityCategory("1", "App Security", SecurityStatus.SAFE, "No malicious apps found"),
-        SecurityCategory("2", "Device Security", SecurityStatus.WARNING, "OS update required"),
-        SecurityCategory("3", "Network", SecurityStatus.DANGER, "Connection is encrypted")
+        SecurityCategory("1", "OS Version", SecurityStatus.SAFE, "No malicious apps found"),
+        SecurityCategory("2", "App Threats", SecurityStatus.WARNING, "OS update required"),
+        SecurityCategory("3", "Wi-Fi Safety", SecurityStatus.DANGER, "Connection is encrypted"),
+        SecurityCategory("4", "Password Strength", SecurityStatus.SAFE, "Connection is encrypted")
     )
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("nnnn") })
+            NortonAppBar()
         },
         contentColor = NortonLightGrey
     ) { padding ->
@@ -84,27 +92,53 @@ fun DashboardStatus(
     status: SecurityStatus,
     onScanClick: () -> Unit
 ) {
-    Column {
-        Text(
-            text = "Device Status: ${status.name}",
-            style = MaterialTheme.typography.titleLarge
-        )
+    val statusColor = when (status) {
+        SecurityStatus.SAFE -> NortonGreen
+        SecurityStatus.WARNING -> NortonOrange
+        SecurityStatus.DANGER -> NortonRed
+        else -> NortonBlue
+    }
 
-        Spacer(modifier = Modifier.height(16.dp))
+    Box(modifier = Modifier.fillMaxWidth()) {
+        Canvas(
+            modifier = Modifier
+                .matchParentSize()
+                .blur(50.dp, edgeTreatment = BlurredEdgeTreatment.Unbounded)
+        ) {
+            val trianglePath = Path().apply {
+                moveTo(size.width, size.height)
+                lineTo(size.width - 200.dp.toPx(), size.height)
+                lineTo(size.width, size.height - 250.dp.toPx())
+                close()
+            }
+            drawPath(
+                path = trianglePath,
+                color = statusColor.copy(alpha = 0.8f)
+            )
+        }
 
-        NortonButton(
-            onClick = onScanClick,
-            text = "Run Scan"
-        )
+        Column(modifier = Modifier.padding(bottom = 8.dp)) {
+            Text(
+                text = "Device Health: ${status.name}",
+                style = MaterialTheme.typography.titleLarge
+            )
 
-        // TODO add row, that will contain some color indicator of current status. some tint or something
+            Spacer(modifier = Modifier.height(16.dp))
+
+            NortonButton(
+                onClick = onScanClick,
+                text = "Run Scan"
+            )
+        }
     }
 }
 
 @Composable
 fun CategoryItem(category: SecurityCategory) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .defaultMinSize(minHeight = 160.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White

@@ -23,6 +23,13 @@ val Typography = Typography(
         fontSize = 22.sp,
         color = Color.Black
     ),
+    // button text: prominent, high contrast style for buttons
+    titleSmall = TextStyle(
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 16.sp,
+        color = Color.Black
+    ),
     // label: medium weight and size for additional info
     labelMedium = TextStyle(
         fontFamily = FontFamily.SansSerif,

@@ -23,6 +23,6 @@ fun NortonButton(
         ),
         border = BorderStroke(width = 3.dp, color = Color.Black)
     ) {
-        Text(text, style = Typography.titleMedium)
+        Text(text, style = Typography.titleSmall)
     }
 }

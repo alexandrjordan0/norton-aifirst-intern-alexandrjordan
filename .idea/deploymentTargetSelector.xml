@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2026-05-20T15:31:56.421119205Z">
+        <DropdownSelection timestamp="2026-05-20T23:58:09.855861098Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=/home/jordan/.config/.android/avd/Medium_Phone.avd" />
