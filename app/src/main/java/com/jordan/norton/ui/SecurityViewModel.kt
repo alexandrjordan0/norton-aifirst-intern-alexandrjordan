@@ -96,12 +96,41 @@ class SecurityViewModel : ViewModel() {
                 val steps = 20
                 for (step in 1..steps) {
                     delay(100)
-                    val progress = startProgress + (endProgress - startProgress) * (step.toFloat() / steps)
+                    val progress =
+                        startProgress + (endProgress - startProgress) * (step.toFloat() / steps)
                     _uiState.update { it.copy(scanProgress = progress) }
                 }
+                delay(800)
             }
 
-            _uiState.update { it.copy(isScanning = false, scanProgress = 1f, currentAction = "Scan Complete") }
+            val newCategories = generateRandomScanResults(_uiState.value.categories)
+
+            _uiState.update { state ->
+                state.copy(
+                    isScanning = false,
+                    scanProgress = 1f,
+                    categories = newCategories,
+                )
+            }
+        }
+    }
+
+    private fun generateRandomScanResults(currentCategories: List<SecurityCategory>): List<SecurityCategory> {
+        return currentCategories.map { category ->
+            val randomStatus = listOf(
+                SecurityStatus.SAFE,
+                SecurityStatus.WARNING,
+                SecurityStatus.DANGER
+            ).random()
+
+            val newDescription = when (randomStatus) {
+                SecurityStatus.SAFE -> "Secured and safe"
+                SecurityStatus.WARNING -> "Action recommended"
+                SecurityStatus.DANGER -> "Critical threat detected!"
+                else -> category.description
+            }
+
+            category.copy(status = randomStatus, description = newDescription)
         }
     }
 }

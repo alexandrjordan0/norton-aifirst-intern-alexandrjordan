@@ -1,5 +1,6 @@
 package com.jordan.norton.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -58,6 +59,10 @@ fun ScanScreen(
         if (!uiState.isScanning && uiState.scanProgress == 1f) {
             onScanComplete()
         }
+    }
+
+    // disable pop while scanning
+    BackHandler(enabled = uiState.isScanning) {
     }
 
     Scaffold(
