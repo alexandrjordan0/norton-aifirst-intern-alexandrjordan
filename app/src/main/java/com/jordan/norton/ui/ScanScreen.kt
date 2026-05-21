@@ -86,6 +86,7 @@ fun ScanScreen(
                 label = "cloudAnimation"
             )
 
+            // Cloudy animation
             Canvas(
                 modifier = Modifier
                     .fillMaxSize()
@@ -121,6 +122,7 @@ fun ScanScreen(
                 )
             }
 
+            // Scan info section
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -147,9 +149,9 @@ fun ScanScreen(
                 LinearProgressIndicator(
                     progress = { uiState.scanProgress },
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxWidth(0.6f)
                         .height(4.dp),
-                    color = NortonBlue,
+                    color = NortonGrey,
                     trackColor = NortonGrey.copy(alpha = 0.3f)
                 )
 

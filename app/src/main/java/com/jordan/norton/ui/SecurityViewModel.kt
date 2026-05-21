@@ -33,6 +33,14 @@ class SecurityViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(SecurityUiState())
     val uiState: StateFlow<SecurityUiState> = _uiState.asStateFlow()
 
+    private val actions = listOf(
+        "Checking system version...",
+        "Scanning for malicious apps...",
+        "Verifying network security...",
+        "Analyzing password strength...",
+        "Finalizing report..."
+    )
+
     init {
         loadInitialData()
     }
@@ -77,17 +85,9 @@ class SecurityViewModel : ViewModel() {
     fun startScan() {
         if (_uiState.value.isScanning) return
 
+        _uiState.update { it.copy(isScanning = true, scanProgress = 0f) }
+
         viewModelScope.launch {
-            _uiState.update { it.copy(isScanning = true, scanProgress = 0f) }
-
-            val actions = listOf(
-                "Checking system version...",
-                "Scanning for malicious apps...",
-                "Verifying network security...",
-                "Analyzing password strength...",
-                "Finalizing report..."
-            )
-
             actions.forEachIndexed { index, action ->
                 _uiState.update { it.copy(currentAction = action) }
                 val startProgress = index.toFloat() / actions.size

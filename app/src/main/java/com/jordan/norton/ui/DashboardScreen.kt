@@ -49,8 +49,12 @@ fun DashboardScreen(
             item {
                 DashboardStatus(
                     deviceHealth = uiState.deviceHealth,
-                    onScanClick =
-                        onNavigateToScan
+                    onScanClick = {
+                        if (!uiState.isScanning) {
+                            viewModel.startScan()
+                            onNavigateToScan()
+                        }
+                    }
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
