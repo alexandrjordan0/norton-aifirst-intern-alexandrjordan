@@ -6,7 +6,7 @@
 
 - **Description:** A native Android application serving as a device security dashboard. Built with
   Kotlin, Jetpack Compose, and a strict MVVM architecture. The project demonstrates reactive UI,
-  dynamic state calculation (device health score), and modular UI components. Developed with an
+  dynamic state calculation, and modular UI components. Developed with an
   AI-first approach to accelerate prototyping and optimize architecture.
 
 ## Setup Instructions
