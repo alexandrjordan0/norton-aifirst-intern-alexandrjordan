@@ -26,7 +26,7 @@
 
 | Dashboard Main Screen | Scan Process |
 | :---: | :---: |
-| <img src="screenshots/main_screen.png" width="250" /> | <img src="screenshots/scan_process.png" width="250" /> |
+| <img src="screenshots/scan_process.png" width="250" /> | <img src="screenshots/main_screen.png" width="250" /> |
 
 ## AI Interaction Log
 
