@@ -141,6 +141,10 @@
 
 - **Prompt: **
   > In the DahshboardStatus add a circular progress indicator which will calculate with deviceHealth score. it should use statusColor.
+- **AI Result:**
+  -Assistant generated good looking indicator at bad position.- **Commentary:**
+- **My changes:**
+  - I adjusted the position and finished the styling.
 
 # Interaction 6: Creating scan screens
 
@@ -151,6 +155,10 @@
   > - label under title which will show current check actions that i will simulate later
   > - small progress indicator under label
   > - Take the color blurred color canvas from the Dashboard status and put it on bottom half of screen. Use NortonBlue color
+- **AI Result:**
+  -Assistant generated nice sketch with everything i wanted from it.
+- **My changes:**
+- I completly styled the page.
 
 # Interaction 7: Writing unit tests
 
@@ -163,6 +171,14 @@
   > 4.  integrity of modified categories after scan
   > 5.  sequence of text updates while scanning
   >     Implement missing dependencies for this
+- **AI Result:**
+- Asisstant generated test I asked for. analyzed edge cases and actually run the test to see if they work as intended.
+- **Commentary:**
+- It took the assistant severtal times to get it right.
+- **My changes:**
+  - Fixed Coroutine test dispatchers using `UnconfinedTestDispatcher` to correctly handle asynchronous StateFlow updates.
+  - Refactored the sequence test using the Turbine library, as the AI initially generated flaky `delay()` timing assertions.
+  - Corrected hallucinated mock syntax and adjusted data assertions to match the exact structure of `SecurityUiState`.
 
 ## Interaction 8: System navigation handling
 
@@ -182,6 +198,11 @@
 > - Jetpack Compose best practices as state hoisting, recomposition performance, etc.
 > - Clean Code and modularity.
 > - Please provide specific areas for improvement and identify any potential risks. I will document this review in my final report
+
+- **AI Result:**
+  - The assistant provided a structured review validating the MVVM architecture. It flagged potential performance issues with unnecessary recompositions when rendering the category list. It pointed some hardcoded constant.
+- **My changes:**
+  - Applied the `@Immutable` annotation to the `SecurityCategory` data class to guarantee stability. Also i removed the hardcoded constants.
 
 ## Note on Micro-Interactions
 
