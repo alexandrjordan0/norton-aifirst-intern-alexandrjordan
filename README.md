@@ -24,8 +24,9 @@
 
 ## Screenshots
 
-<img src="screenshots/main_screen.png" alt="Dashboard Main Screen" width="250" />
-<img src="screenshots/scan_process.png" alt="Scan Process" width="250" />
+| Dashboard Main Screen | Scan Process |
+| :---: | :---: |
+| <img src="screenshots/main_screen.png" width="250" /> | <img src="screenshots/scan_process.png" width="250" /> |
 
 ## AI Interaction Log
 
