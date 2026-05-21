@@ -24,8 +24,8 @@
 
 ## Screenshots
 
-- ![Dashboard Main Screen](screenshots/main_screen.png)
-- ![Scan Process](screenshots/scan_process.png)
+<img src="screenshots/main_screen.png" alt="Dashboard Main Screen" width="250" />
+<img src="screenshots/scan_process.png" alt="Scan Process" width="250" />
 
 ## AI Interaction Log
 
