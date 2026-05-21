@@ -141,3 +141,13 @@
 
 - **Prompt: **
   > In the DahshboardStatus add a circular progress indicator which will calculate with deviceHealth score. it should use statusColor.
+
+# Interaction 6: Creating scan screens
+
+- **Prompt: **
+  > Now lets work on ScanScreen. I need to add this on the screen:
+  >
+  > - Title scanning
+  > - label under title which will show current check actions that i will simulate later
+  > - small progress indicator under label
+  > - Take the color blurred color canvas from the Dashboard status and put it on bottom half of screen. Use NortonBlue color

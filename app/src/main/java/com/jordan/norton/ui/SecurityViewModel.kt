@@ -6,19 +6,23 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.filled.Wifi
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.jordan.norton.model.DeviceHealth
 import com.jordan.norton.model.SecurityCategory
 import com.jordan.norton.model.SecurityStatus
 import com.jordan.norton.model.calculateDeviceHealth
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 data class SecurityUiState(
     val categories: List<SecurityCategory> = emptyList(),
     val isScanning: Boolean = false,
     val scanProgress: Float = 0f,
+    val currentAction: String = ""
 ) {
     val deviceHealth: DeviceHealth
         get() = categories.calculateDeviceHealth()
@@ -71,6 +75,33 @@ class SecurityViewModel : ViewModel() {
     }
 
     fun startScan() {
+        if (_uiState.value.isScanning) return
 
+        viewModelScope.launch {
+            _uiState.update { it.copy(isScanning = true, scanProgress = 0f) }
+
+            val actions = listOf(
+                "Checking system version...",
+                "Scanning for malicious apps...",
+                "Verifying network security...",
+                "Analyzing password strength...",
+                "Finalizing report..."
+            )
+
+            actions.forEachIndexed { index, action ->
+                _uiState.update { it.copy(currentAction = action) }
+                val startProgress = index.toFloat() / actions.size
+                val endProgress = (index + 1).toFloat() / actions.size
+
+                val steps = 20
+                for (step in 1..steps) {
+                    delay(100)
+                    val progress = startProgress + (endProgress - startProgress) * (step.toFloat() / steps)
+                    _uiState.update { it.copy(scanProgress = progress) }
+                }
+            }
+
+            _uiState.update { it.copy(isScanning = false, scanProgress = 1f, currentAction = "Scan Complete") }
+        }
     }
 }

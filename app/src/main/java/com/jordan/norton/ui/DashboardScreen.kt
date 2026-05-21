@@ -49,7 +49,8 @@ fun DashboardScreen(
             item {
                 DashboardStatus(
                     deviceHealth = uiState.deviceHealth,
-                    onScanClick = onNavigateToScan
+                    onScanClick =
+                        onNavigateToScan
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
